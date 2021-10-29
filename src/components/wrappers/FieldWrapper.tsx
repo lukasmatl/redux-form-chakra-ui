@@ -36,10 +36,10 @@ export const FieldWrapper: React.FC<any> = (props) => {
 
   const {fieldComponent, children} = props;
   const componentProps = getProps(props);
-
+  const componentChildren = children? children: [];
   return (
     <>
-      {React.createElement(fieldComponent, componentProps, children)}
+      {React.createElement(fieldComponent, componentProps, ...componentChildren)}
     </>
   );
 
