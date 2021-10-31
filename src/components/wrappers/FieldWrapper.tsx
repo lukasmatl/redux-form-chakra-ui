@@ -5,10 +5,13 @@ import { isNil, equals } from 'ramda';
 export const FieldWrapper: React.FC<any> = (props) => {
 
   const onChange = useCallback((eventOrValue: any, value: any) => {
-    const {componentProps: {afterOnChange}, input} = props;
+    const {componentProps: {afterOnChange, beforeOnChange}, input} = props;
     const onChangeValue = value ? value : eventOrValue;
+
+    if (beforeOnChange) beforeOnChange();
     input.onChange(onChangeValue);
     if (afterOnChange) afterOnChange();
+
   }, [props]);
 
   const onBlur = useCallback(() => {
